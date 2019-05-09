@@ -1,0 +1,37 @@
+api_platform:
+    title: API Platform's demo
+    version: 1.0.0
+    description: |
+      This is a demo application of the [API Platform](https://api-platform.com) framework.
+      [Its source code](https://github.com/api-platform/demo) includes various examples, check it out!
+      You may also be interested by [the GraphQL entrypoint](/graphql).
+      [A PWA](https://demo-client.api-platform.com) and [an admin](https://demo-admin.api-platform.com) are consuming this API.
+    formats:
+        jsonld: ['application/ld+json']
+        jsonhal: ['application/hal+json']
+        jsonapi: ['application/vnd.api+json']
+        json: ['application/json']
+        xml: ['application/xml', 'text/xml']
+        yaml: ['application/x-yaml']
+        csv: ['text/csv']
+        html: ['text/html']
+    mapping:
+        paths: ['%kernel.project_dir%/src/Entity']
+    http_cache:
+        #invalidation:
+        #    enabled: true
+        #    varnish_urls: ['%env(VARNISH_URL)%']
+        max_age: 0
+        shared_max_age: 3600
+        vary: ['Content-Type', 'Authorization', 'Origin']
+        public: true
+    collection:
+        pagination:
+            items_per_page: 30
+    mercure:
+        hub_url: '%env(MERCURE_SUBSCRIBE_URL)%'
+    swagger:
+        api_keys:
+            apiKey:
+                name: Authorization
+                type: header
